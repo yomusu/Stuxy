@@ -149,8 +149,12 @@ func LoadGroupConfig(c appengine.Context, group string) (*GroupConfigModel, erro
 	}
 
 	// memcachedにPut
-	v.PutToMemcache(c)
-	return v, nil
+	if v != nil {
+		v.PutToMemcache(c)
+		return v, nil
+	} else {
+		return nil, nil
+	}
 }
 
 //--------------------------------------------------------
