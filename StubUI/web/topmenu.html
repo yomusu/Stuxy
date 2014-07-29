@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="stublist.html">
+<link rel="import" href="grouplist.html">
+<link rel="import" href="poster.html">
+
+<polymer-element name="top-menu">
+  <template>
+  
+    <link rel="stylesheet" href="stubui.css">
+    
+    <div>
+      <button on-click="{{changeMode}}" mode-code="stub">スタブ</button>
+      <button on-click="{{changeMode}}" mode-code="group">GroupConfig</button>
+      <button on-click="{{changeMode}}" mode-code="post">POSTしてみる</button>
+    </div>
+    
+    <template if="{{mode=='stub'}}">
+      <stub-list _hosturl="http://localhost:8081"></stub-list>
+    </template>
+    <template if="{{mode=='group'}}">
+      <group-list _hosturl="http://localhost:8081"></group-list>
+    </template>
+    <template if="{{mode=='post'}}">
+      <post-form _hosturl="http://localhost:8081"></post-form>
+    </template>
+    
+  </template>
+  <script type="application/dart" src="topmenu.dart"></script>
+</polymer-element>

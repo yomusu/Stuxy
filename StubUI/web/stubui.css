@@ -1,0 +1,44 @@
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+
+h1, p {
+  color: #333;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.alpha {
+  font-family:'Consolas';
+}
+
+.path {
+  font-size: small;
+}
+
+.title {
+  font-weight: bold;
+}
+
+table.border {
+  border-collapse: collapse;
+  border: 1px #888 solid;
+}
+
+.border td,th {
+  border: 1px #888 solid;
+  padding: 5px;
+}
+
+.notes {
+  font-size: x-small;
+  color:gray;
+}

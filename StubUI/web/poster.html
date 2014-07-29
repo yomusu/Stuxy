@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<link rel="import" href="packages/polymer/polymer.html">
+<polymer-element name="post-form">
+  <template>
+  
+    <link rel="stylesheet" href="stubui.css">
+  
+    <h3>Postしてみる</h3>
+    <div>
+      <table><tbody>
+        <tr><td>FQDN</td><td><input type="text" value="{{formFQDN}}" size="50"></td></tr>
+        <tr><td>Path</td><td><input type="text" value="{{formPath}}" size="50"></td></tr>
+        <tr><td>Parameter</td><td><textarea cols="50" rows="12" value="{{formParam}}"></textarea></td></tr>
+        <tr><td></td><td>
+          <button on-click="{{sendForm}}">取得する</button>
+          <button on-click="{{clearForm}}">Clear</button>
+        </td></tr>
+      </tbody></table>
+    
+    </div>
+    <h3>取得したデータ</h3>
+    <template if="{{errorMessage!=null}}">
+      <div class="error">{{errorMessage}}</div>
+    </template>
+    <template if="{{result!=null}}">
+      <div>
+        <textarea cols="80" rows="12" value="{{result}}"></textarea>
+      </div>
+    </template>
+    
+  </template>
+  <script type="application/dart" src="poster.dart"></script>
+</polymer-element>

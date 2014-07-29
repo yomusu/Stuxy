@@ -1,0 +1,73 @@
+<meta charset="utf-8">
+<link rel="import" href="packages/polymer/polymer.html">
+<polymer-element name="stub-list">
+  <template>
+  
+    <link rel="stylesheet" href="stubui.css">
+    <style>
+      .fix-wrap {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -o-box;
+        display: box;
+      }
+    </style>
+    
+    
+<div class="fix-wrap">  
+  <div style="width:400px;">
+    <h3>スタブ一覧</h3>
+    <template if="{{errorMessage!=null}}">
+      <div>{{ errorMessage }}</div>
+    </template>
+    <template if="{{datas==null && errorMessage==null}}">
+      <div>読み込み中...</div>
+    </template>
+    <template if="{{datas!=null}}">
+    <div>{{datas.length}}件</div>
+    <div>
+      <table class="border" >
+      <tbody>
+        <tr template repeat="{{ d in datas }}">
+          <td>
+            <span class="title">{{d["title"]}}</span><br>
+            <span class="path alpha">{{d["path"]}}</span><br>
+            <span class="notes alpha">{{d["group"]}}</span><br>
+            <select selectedIndex="{{d['waitIndex']}}" on-change="{{changeWaitSelection}}" stub-path="{{d['path']}}">
+              <option template repeat="{{i in selectWaitData}}">{{i['title']}}</option>
+            </select>
+            <select selectedIndex="{{d['modeIndex']}}" on-change="{{changeModeSelection}}" stub-path="{{d['path']}}">
+              <option template repeat="{{i in selectModeData}}">{{i['title']}}</option>
+            </select>
+            <button on-click="{{editStub}}" stub-path="{{d['path']}}">編集</button>
+            <button on-click="{{delStub}}" stub-path="{{d['path']}}">削除</button>
+          </td>
+        </tr>
+      </tbody>
+      
+      </table>
+    </div>
+    </template>
+  </div>
+  
+  <div>    
+    <h3>スタブ詳細</h3>
+    <div>
+      <table><tbody>
+        <tr><td>Title</td><td><input type="text" value="{{formTitle}}" size="50"></td></tr>
+        <tr><td>Path</td><td><input type="text" value="{{formPath}}" size="50"></td></tr>
+        <tr><td>Group</td><td><input type="text" value="{{formGroup}}" size="50"></td></tr>
+        <tr><td>ContentType</td><td><input type="text" value="{{formContentType}}" size="50"></td></tr>
+        <tr><td>Data</td><td><textarea cols="50" rows="8" value="{{formData}}"></textarea></td></tr>
+        <tr><td></td><td>
+          <button on-click="{{sendForm}}">Submit</button>
+          <button on-click="{{clearForm}}">Clear</button>
+        </td></tr>
+      </tbody></table>
+    
+    </div>
+  </div>
+</div>    
+  </template>
+  <script type="application/dart" src="stublist.dart"></script>
+</polymer-element>

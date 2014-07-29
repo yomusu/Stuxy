@@ -1,0 +1,63 @@
+<meta charset="utf-8">
+<link rel="import" href="packages/polymer/polymer.html">
+<polymer-element name="group-list">
+  <template>
+  
+    <link rel="stylesheet" href="stubui.css">
+    <style>
+      .fix-wrap {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -o-box;
+        display: box;
+      }
+    </style>
+    
+    
+<div class="fix-wrap">  
+  <div style="width:400px;">
+    <h3>GroupConfig一覧</h3>
+    <template if="{{errorMessage!=null}}">
+      <div>{{ errorMessage }}</div>
+    </template>
+    <template if="{{datas==null && errorMessage==null}}">
+      <div>読み込み中...</div>
+    </template>
+    <template if="{{datas!=null}}">
+    <div>{{datas.length}}件</div>
+    <div>
+      <table class="border" >
+      <tbody>
+        <tr template repeat="{{ d in datas }}">
+          <td>
+            <span class="title">{{d["group"]}}</span><br>
+            <span class="path alpha">{{d["proxyurl"]}}</span>
+          </td>
+          <td><button on-click="{{editGroup}}" group-name="{{d['group']}}">編集</button><br>
+          <button on-click="{{delGroup}}" group-name="{{d['group']}}">削除</button></td>
+        </tr>
+      </tbody>
+      
+      </table>
+    </div>
+    </template>
+  </div>
+  
+  <div>    
+    <h3>GroupConfig詳細</h3>
+    <div>
+      <table><tbody>
+        <tr><td>Group</td><td><input type="text" value="{{formGroup}}" size="50"></td></tr>
+        <tr><td>ProxyURL</td><td><input type="text" value="{{formProxyURL}}" size="70"></td></tr>
+        <tr><td></td><td>
+          <button on-click="{{sendForm}}">Submit</button>
+          <button on-click="{{clearForm}}">Clear</button>
+        </td></tr>
+      </tbody></table>
+    
+    </div>
+  </div>
+</div>    
+  </template>
+  <script type="application/dart" src="grouplist.dart"></script>
+</polymer-element>
