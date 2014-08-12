@@ -7,6 +7,7 @@ import (
 	//	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -159,11 +160,19 @@ func fetchStubPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// RequestされたURLを取得する
-	path := r.URL.Path
+	// RequestされたURLを取得する(getパラメータも含めて)
+	dsturl := new(url.URL)
+	*dsturl = *r.URL
+	dsturl.Scheme = ""
+	dsturl.Host = ""
+	dsturl.User = nil
+	path := dsturl.String()
+
+	// StubPageのKeyとなるのはURL.Path
+	stubPageKey := r.URL.Path
 
 	// StubPageを取得する
-	stub, err := GetStubPage(c, path)
+	stub, err := GetStubPage(c, stubPageKey)
 	if err != nil {
 		http.Error(w, "could not query from datastore", http.StatusInternalServerError)
 		return
