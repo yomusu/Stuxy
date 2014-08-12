@@ -175,7 +175,7 @@ func (model *GroupConfigModel) PutToMemcache(c appengine.Context) error {
 	if err != nil {
 		return err
 	}
-	c.Infof(string(j))
+	c.Infof("put group to memcache : %s", string(j))
 
 	// キャッシュを書き換え
 	item := &memcache.Item{
