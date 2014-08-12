@@ -76,9 +76,7 @@ func ProxyURL2(c appengine.Context, w http.ResponseWriter, posturl string, r *ht
 
 	bodyType, _ := getContentType(r.Header)
 
-	c.Infof("proxy test url  : " + posturl)
-	c.Infof("proxy test type : " + bodyType)
-	c.Infof("proxy test param: " + params)
+	c.Infof("proxy\n url : %s\n bodytype : %s\n params : %s", posturl, bodyType, params)
 
 	// いざfetch
 	client := urlfetch.Client(c)
